@@ -1,14 +1,16 @@
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import toast, { Toaster } from 'react-hot-toast';
-import { useGetContactsQuery, usePostContactsMutation } from 'redux/api';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContacts } from 'redux/contacts/operations';
+import { selectAllContacts, selectLoading } from 'redux/contacts/selectors';
 
 import { Button, Form, Field, ErrorMessage } from './Form.styled';
 
 export const ContactForm = () => {
-  const { data } = useGetContactsQuery();
-
-  const [submitForm, { isLoading }] = usePostContactsMutation();
+  const dispatch = useDispatch();
+  const contacts = useSelector(selectAllContacts);
+  const loading = useSelector(selectLoading);
 
   const initialValues = {
     name: '',
@@ -21,16 +23,15 @@ export const ContactForm = () => {
   });
 
   const handleSubmit = (values, { resetForm }) => {
-    const sameName = data.some(
-      i => i.name.toLowerCase() === values.name.toLowerCase()
-    );
-    if (sameName) {
-      toast.error(` ${values.name} is already in contacts`);
-    }
-    resetForm();
     const { name, number } = values;
 
-    submitForm({ name, number });
+    contacts.find(
+      contact => contact.name.toLowerCase() === values.name.toLowerCase()
+    )
+      ? toast.error(` ${values.name} is already in contacts`)
+      : dispatch(addContacts({ name, number }));
+
+    resetForm();
   };
 
   return (
@@ -45,7 +46,7 @@ export const ContactForm = () => {
         <ErrorMessage name="name" component="span" />
         <Field type="tel" name="number" />
         <ErrorMessage name="number" component="span" />
-        <Button type="submit">{isLoading ? 'Add....' : 'Add contacts'}</Button>
+        <Button type="submit">{loading ? 'Add....' : 'Add contacts'}</Button>
         <Toaster position="top-right" reverseOrder={false} />
       </Form>
     </Formik>

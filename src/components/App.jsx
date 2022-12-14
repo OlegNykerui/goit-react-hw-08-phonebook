@@ -3,17 +3,17 @@
 // import { Filter } from './Filter/Filter';
 
 import { lazy, Suspense, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { refreshUser } from 'redux/auth/operations';
 import { useAuth } from 'hooks/useAuth';
-import { Layout } from './Layout/Layout';
 import { PrivateRoute } from './PrivateRoute';
-import { RestrictedRoute } from './RestrictedRoute';
+import { PublicRoute } from './PublicRoute';
 
-const HomePage = lazy(() => import('../pages/homePage/homePage'));
+const Layout = lazy(() => import('../components/Layout/Layout'));
+const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
-const LoginPage = lazy(() => import('../pages/LoginPages/LoginPages'));
+const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
 const ContactsPage = lazy(() => import('../pages/ContactsPage/ContactsPage'));
 
 export const App = () => {
@@ -30,54 +30,79 @@ export const App = () => {
     <Suspense fallback={<p>Loading...</p>}>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
           <Route
-            path="/register"
+            index
             element={
-              <RestrictedRoute
-                redirectTo="/contacts"
-                component={<RegisterPage />}
-              />
+              <PublicRoute>
+                <HomePage />
+              </PublicRoute>
             }
           />
+
           <Route
-            path="/login"
+            path="register"
             element={
-              <RestrictedRoute
-                redirectTo="/contacts"
-                component={<LoginPage />}
-              />
+              <PublicRoute restricted>
+                <RegisterPage />
+              </PublicRoute>
             }
           />
+
           <Route
-            path="/tasks"
+            path="login"
             element={
-              <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+              <PublicRoute restricted>
+                <LoginPage />
+              </PublicRoute>
             }
           />
+
+          <Route
+            path="contacts"
+            element={
+              <PrivateRoute>
+                <ContactsPage />
+              </PrivateRoute>
+            }
+          />
+
+          <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>
     </Suspense>
+
+    // <Suspense fallback={<p>Loading...</p>}>
+    //   <Routes>
+    //     {/* <Route path="/" redirectTo="/home" element={<Layout />}> */}
+    //     <Route path="/" element={<Layout />}>
+    //       <Route index element={<HomePage />} />
+    //       <Route
+    //         path="/register"
+    //         element={
+    //           <RestrictedRoute
+    //             redirectTo="/contacts"
+    //             component={<RegisterPage />}
+    //           />
+    //         }
+    //       />
+    //       <Route
+    //         path="/login"
+    //         element={
+    //           <RestrictedRoute
+    //             redirectTo="/contacts"
+    //             component={<LoginPage />}
+    //           />
+    //         }
+    //       />
+    //       <Route
+    //         path="/contacts"
+    //         element={
+    //           <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+    //         }
+    //       />
+    //     </Route>
+    //   </Routes>
+    // </Suspense>
   );
-
-  // <div
-  //   style={{
-  //     width: '500px',
-  //     marginLeft: 'auto',
-  //     marginRight: 'auto',
-  //     marginTop: '50px',
-  //     border: '1px dashed orange',
-  //     backgroundColor: '#fffcf9',
-  //   }}
-  // >
-  //   <h1 style={{ textAlign: 'center' }}>PhoneBook</h1>
-
-  //   <ContactForm />
-
-  //   <h2 style={{ textAlign: 'center' }}>Contacts</h2>
-
-  //   <Filter />
-  //   <ContactsList />
-  // </div>
 };
 export default App;
