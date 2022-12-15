@@ -9,7 +9,7 @@ export const Container = styled.div`
 
 export const Title = styled.h1`
   font-weight: 500;
-  font-size: 48;
+  font-size: 50;
   text-align: center;
   font-style: italic;
 `;
