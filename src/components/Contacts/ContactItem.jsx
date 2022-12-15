@@ -16,7 +16,7 @@ const ContactItem = ({ id, name, number }) => {
           onClick={() => dispatch(deleteContacts(id))}
           type="button"
         >
-          {/* {isLoading ? 'Deleting...' : 'Delete'} */} delete
+          {/* {isLoading ? 'Deleting...' : 'Delete'} */} Видалити
         </ButtonDelete>
       </Item>
     </>

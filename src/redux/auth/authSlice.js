@@ -13,31 +13,39 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
-    [register.fulfilled](state, action) {
+    [register.fulfilled]: (state, action) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
-    [logIn.fulfilled](state, action) {
+    [register.rejected]: (state, action) => {
+      state.error = action.payload;
+      state.isLoggedIn = false;
+    },
+    [logIn.fulfilled]: (state, action) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
-    [logOut.fulfilled](state) {
+    [logIn.rejected]: (state, action) => {
+      state.error = action.payload;
+      state.isLoggedIn = false;
+    },
+    [logOut.fulfilled]: state => {
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
     },
-    [refreshUser.pending](state) {
-      state.isRefreshing = true;
+    [refreshUser.pending]: state => {
+      state.isFetchingCurrentUser = true;
     },
-    [refreshUser.fulfilled](state, action) {
+    [refreshUser.fulfilled]: (state, action) => {
       state.user = action.payload;
       state.isLoggedIn = true;
-      state.isRefreshing = false;
+      state.isFetchingCurrentUser = false;
     },
-    [refreshUser.rejected](state) {
-      state.isRefreshing = false;
+    [refreshUser.rejected]: state => {
+      state.isFetchingCurrentUser = false;
     },
   },
 });

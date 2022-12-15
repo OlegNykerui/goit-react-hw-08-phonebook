@@ -1,36 +1,3 @@
-// <Suspense fallback={<p>Loading...</p>}>
-//   <Routes>
-//     {/* <Route path="/" redirectTo="/home" element={<Layout />}> */}
-//     <Route path="/" element={<Layout />}>
-//       <Route index element={<HomePage />} />
-//       <Route
-//         path="/register"
-//         element={
-//           <RestrictedRoute
-//             redirectTo="/contacts"
-//             component={<RegisterPage />}
-//           />
-//         }
-//       />
-//       <Route
-//         path="/login"
-//         element={
-//           <RestrictedRoute
-//             redirectTo="/contacts"
-//             component={<LoginPage />}
-//           />
-//         }
-//       />
-//       <Route
-//         path="/contacts"
-//         element={
-//           <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
-//         }
-//       />
-//     </Route>
-//   </Routes>
-// </Suspense>
-
 import { createSlice } from '@reduxjs/toolkit';
 import { logOut } from 'redux/auth/operations';
 import { fetchContacts, addContacts, deleteContacts } from './operations';

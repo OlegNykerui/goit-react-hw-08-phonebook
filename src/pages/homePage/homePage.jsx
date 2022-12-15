@@ -1,9 +1,9 @@
 import { Container, Title } from './HomePage.styled';
 
-export default function homePage() {
+export default function HomePage() {
   return (
     <Container>
-      <Title> Welcome! Find your contacts!</Title>
+      <Title> Ласкаво просимо! Знайди свої контакти!</Title>
     </Container>
   );
 }

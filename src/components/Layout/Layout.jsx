@@ -3,9 +3,9 @@ import { Toaster } from 'react-hot-toast';
 import { AppBar } from '../AppBar/Appbar';
 import { Suspense } from 'react';
 
-export const Layout = () => {
+const Layout = () => {
   return (
-    <div style={{ maxWidth: 960, margin: '0 auto', padding: '0 16px' }}>
+    <div style={{ maxWidth: 1260, margin: '0 auto', padding: '0 16px' }}>
       <AppBar />
       <Suspense fallback={null}>
         <Outlet />
@@ -14,3 +14,5 @@ export const Layout = () => {
     </div>
   );
 };
+
+export default Layout;

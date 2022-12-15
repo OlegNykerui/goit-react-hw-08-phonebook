@@ -1,11 +1,10 @@
 import { RegisterForm } from 'components/RegisterForm/RegisterForm';
-
-export default function Register() {
+import css from './RegisterPage.module.css';
+export default function RegisterPage() {
   return (
     <div>
-      {/* <Helmet> */}
-      <title>Registration</title>
-      {/* </Helmet> */}
+      <h1 className={css.title}>Реєстрація</h1>
+
       <RegisterForm />
     </div>
   );

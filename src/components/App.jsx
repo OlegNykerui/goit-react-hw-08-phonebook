@@ -1,7 +1,3 @@
-// import { ContactsList } from './Contacts/ContactsList';
-// import { ContactForm } from './Form/ContactForm';
-// import { Filter } from './Filter/Filter';
-
 import { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -70,39 +66,6 @@ export const App = () => {
         </Route>
       </Routes>
     </Suspense>
-
-    // <Suspense fallback={<p>Loading...</p>}>
-    //   <Routes>
-    //     {/* <Route path="/" redirectTo="/home" element={<Layout />}> */}
-    //     <Route path="/" element={<Layout />}>
-    //       <Route index element={<HomePage />} />
-    //       <Route
-    //         path="/register"
-    //         element={
-    //           <RestrictedRoute
-    //             redirectTo="/contacts"
-    //             component={<RegisterPage />}
-    //           />
-    //         }
-    //       />
-    //       <Route
-    //         path="/login"
-    //         element={
-    //           <RestrictedRoute
-    //             redirectTo="/contacts"
-    //             component={<LoginPage />}
-    //           />
-    //         }
-    //       />
-    //       <Route
-    //         path="/contacts"
-    //         element={
-    //           <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
-    //         }
-    //       />
-    //     </Route>
-    //   </Routes>
-    // </Suspense>
   );
 };
 export default App;

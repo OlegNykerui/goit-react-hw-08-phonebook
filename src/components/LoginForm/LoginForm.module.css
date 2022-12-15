@@ -1,6 +1,7 @@
 .form {
   width: 420px;
   margin: auto;
+  margin-top: 50px;
 }
 
 .label {
@@ -17,10 +18,15 @@
 }
 
 .button {
-  margin-left: 150px;
+  margin-left: 167px;
+  width: 100px;
   height: 30px;
   padding: 7px;
   background-color: #ffa67075;
   border: 1px dashed brown;
   border-radius: 7px;
+}
+
+.title {
+  text-align: center;
 }
