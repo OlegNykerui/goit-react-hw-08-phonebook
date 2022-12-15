@@ -1,9 +1,13 @@
+import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContacts } from 'redux/contacts/operations';
-import { selectAllContacts, selectLoading } from 'redux/contacts/selectors';
+import { addContacts } from '../../redux/contacts/operations';
+import {
+  selectAllContacts,
+  selectLoading,
+} from '../../redux/contacts/selectors';
 
 import { Button, Form, Field, ErrorMessage } from './Form.styled';
 

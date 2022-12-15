@@ -1,12 +1,13 @@
+import React from 'react';
 import { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { refreshUser } from 'redux/auth/operations';
-import { useAuth } from 'hooks/useAuth';
+import { refreshUser } from '../redux/auth/operations';
+import { useAuth } from '../hooks/useAuth';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
 
-const Layout = lazy(() => import('../components/Layout/Layout'));
+const Layout = lazy(() => import('./Layout/Layout'));
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));

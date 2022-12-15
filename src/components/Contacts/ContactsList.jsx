@@ -1,6 +1,10 @@
+import React from 'react';
 import { useSelector } from 'react-redux';
 import ContactItem from './ContactItem';
-import { selectFilter, selectAllContacts } from 'redux/contacts/selectors';
+import {
+  selectFilter,
+  selectAllContacts,
+} from '../../redux/contacts/selectors';
 
 import { List } from '../Form/Form.styled';
 
